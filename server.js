@@ -3,12 +3,12 @@ const fs = require("fs");
 const path = require("path");
 
 const app = express();
+
 app.use(express.json());
 app.use(express.static("public"));
 
 const filePath = path.join(__dirname, "llaves.json");
 
-// 🔐 login
 app.post("/login", (req, res) => {
     const { clave } = req.body;
 
@@ -31,7 +31,9 @@ app.post("/login", (req, res) => {
     res.json({ ok: true });
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+// 🔥 IMPORTANTE PARA RENDER
+const PORT = process.env.PORT;
+
+app.listen(PORT, "0.0.0.0", () => {
     console.log("Servidor corriendo en " + PORT);
 });
